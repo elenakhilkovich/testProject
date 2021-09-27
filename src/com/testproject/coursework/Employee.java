@@ -1,30 +1,33 @@
 package com.testproject.coursework;
 
-public class Employee {
-    String id;
-    int department;
-    int salary;
+import java.util.Objects;
 
-    public Employee(String id, int department, int salary) {
-        this.id = id;
+public class Employee {
+    private int id;            //почему не создается final?
+    private  String name;          //надо private final?
+    private int department;
+    private double salary;
+    private static int counter;               //это счетчик, отвечает за id
+
+    public Employee(String name, int department, double salary) {
+        this.id = counter++;                    //просматривает всех работников
         this.department = department;
         this.salary = salary;
+        this.name = name;
+
     }
 
     public Employee() {
-        int[] department = new int[5];                   //отдел на 5
+        int[] department = new int[5];                   //отдел на 5. Так?
     }
 
-    //public static String id() {                        //это статическая переменная?
 
-    //}
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getName() {
+        return name;
     }
 
     public int getDepartment() {
@@ -35,7 +38,7 @@ public class Employee {
         this.department = department;
     }
 
-    public int getSalary() {
+    public double getSalary() {
         return salary;
     }
 
@@ -44,11 +47,23 @@ public class Employee {
     }
 
 
-    public void main(String[] args) {
-        Employee Employee = new Employee();
-
-    //     public Employee() {
-      //      this.employee = new Employee[10];
-        }
+    @Override
+    public String toString() {
+           return name + " - " + department + " - " +salary+ " рублей.";
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return id == employee.id && department == employee.department && Double.compare(employee.salary, salary) == 0 && Objects.equals(name, employee.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, department, salary);
+    }
+}
+
 
