@@ -8,7 +8,6 @@ public class Book {
     String name;
     Author author;
     int publishYear;
-    static int a = 5;
 
     public Book(String name, Author author, int publishYear) {
         this.name = name;
