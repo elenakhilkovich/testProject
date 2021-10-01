@@ -3,24 +3,18 @@ package com.testproject.coursework;
 import java.util.Objects;
 
 public class Employee {
-    private int id;            //почему не создается final?
-    private  String name;          //надо private final?
+    private final int id;
+    private final String name;
     private int department;
     private double salary;
-    private static int counter;               //это счетчик, отвечает за id
+    private static int counter = 0;               //это счетчик, отвечает за id
 
     public Employee(String name, int department, double salary) {
         this.id = counter++;                    //просматривает всех работников
         this.department = department;
         this.salary = salary;
         this.name = name;
-
     }
-
-    public Employee() {
-        int[] department = new int[5];                   //отдел на 5. Так?
-    }
-
 
     public int getId() {
         return id;
@@ -44,12 +38,12 @@ public class Employee {
 
     public void setSalary(int salary) {
         this.salary = salary;
-    }
+    }   //void - ничего не возвращает
 
 
     @Override
     public String toString() {
-           return name + " - " + department + " - " +salary+ " рублей.";
+        return name + ", " + department + " отдел, зарплата " + salary + " рублей.";
     }
 
     @Override
