@@ -5,6 +5,12 @@ public abstract class TruckEngineVehicle extends EngineVehicle {
         super(modelName, wheelsCount);
     }
 
+    @Override
+    public void check() {
+        super.check();
+        checkTrailer();
+    }
+
     public void checkTrailer() {
         System.out.println("Проверяем прицеп");
     }
